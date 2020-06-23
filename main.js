@@ -44,11 +44,17 @@ function playAudio(audioKeyCode) {
 function removePlayingClass(event) {
     event.target.classList.remove("playing")
 }
-// click with mouse
-keys.forEach(function(key) {
-    key.addEventListener("click", playNote)
-    key.addEventListener("transitionend", removePlayingClass)
-})
 
-//keyboard types
-window.addEventListener("keydown", playNote)
+
+function registerEvents() {
+    // click with mouse
+    keys.forEach(function(key) {
+        key.addEventListener("click", playNote)
+        key.addEventListener("transitionend", removePlayingClass)
+    })
+    
+    //keyboard types
+    window.addEventListener("keydown", playNote)
+}
+
+window.addEventListener("load", registerEvents)
