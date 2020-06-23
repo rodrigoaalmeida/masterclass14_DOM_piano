@@ -5,7 +5,7 @@ const keys = document.querySelectorAll(".key")
 function playNote(event){
     let audioKeyCode = getKeyCode(event)
     //typed or pressed key
-    const key = document.querySelector(`[data-key="${audioKeyCode}"]`)
+    const key = document.querySelector(`.key[data-key="${audioKeyCode}"]`)
 
     //if key exists
     const cantFoundAnyKey = !key
@@ -14,7 +14,7 @@ function playNote(event){
         return;
     }
 
-    //play audio
+    playAudio(audioKeyCode)
 }
 
 function getKeyCode(event) {
@@ -28,6 +28,12 @@ function getKeyCode(event) {
     }
 
     return keyCode
+}
+
+function playAudio(audioKeyCode) {
+    const song = document.querySelector(`audio[data-key="${audioKeyCode}"]`)
+    song.currentTime = 0;
+    song.play()
 }
 // click with mouse
 keys.forEach(function(key) {
